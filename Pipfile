@@ -8,6 +8,9 @@ flask = "*"
 sqlalchemy = "*"
 flask-migrate = "*"
 python-dotenv = "*"
+mysqlclient = "*"
+uwsgi = "*"
+class-utils = "*"
 
 [dev-packages]
 
