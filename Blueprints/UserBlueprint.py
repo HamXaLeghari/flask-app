@@ -39,6 +39,7 @@ def signup():
 def login():
     return render_template('log_in.html')
 
+
 @userBp.route('/authenticate',methods=['POST'])
 def authenticate():
     if request.is_json:
@@ -57,23 +58,28 @@ def authenticate():
     else:
         session.clear()
         session["user_id"] = user.id
-        return render_template('note_index')
+        return redirect(url_for('postBp.index'))
     
     flash(error,'error')
     
+    return render_template('log_in.html')
+
+@userBp.route('/logout',methods=['GET','DELETE'])
+def logout():
+    session.clear()
+    flash('Logout Successful','success')
     return redirect(url_for('userBp.login'))
     
-      
-      
-@userBp.route('/all',methods=['GET'])
+     
+@userBp.route('/all',methods=['GET']) # DOES NOT WORK; TO SIMULATE EXCEPTIONS ONLY
 def findAll():
     
     userService : UserService = app.UserService
         
-    userList = [user.toDict() for user in userService.findAll()]
+   # userList = [user.toDict() for user in userService.findAll()]
     
-    return userList,200
-
+    #return userList,200
+    return userService.findAll(), 200
 
     
     

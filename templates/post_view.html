@@ -1,21 +1,10 @@
  {% extends  'base.html' %}
 
 {% block content %}
-  {% if not posts %}
-    <div class="content">
-      <p>There aren't any posts!
-       
-      {%if g.user %}<a href="{{ url_for('postBp.create') }}">Create the first post.</a> {% endif %}
-    </div>
-  {% endif %}
-
-  {% for post in posts  %}
 
     <article class="message">
       <div class="message-header">
-      <a style="text-decoration: none; color: inherit; transition: none;" href="{{ url_for('postBp.view', post_id=post.id) }}">
-      <p>{{ post.title  }} ~ {{post.user.username}}</p>
-      </a>
+        <p>{{ post.title  }} ~ {{post.user.username}}</p>
         {% if g.user %}
         <div>
           <a class="button is-primary is-small has-text-weight-bold" href="{{ url_for('postBp.updateView', post_id=post.id) }}">
@@ -28,13 +17,9 @@
 
         {% endif %}
       </div>
-      {# <div class="message-body content">
+       <div class="message-body content">
         {{ post.body }}
-      </div> #}
+      </div> 
     </article>
-    
-
-    
-    
-  {% endfor %}
+  
 {% endblock %}

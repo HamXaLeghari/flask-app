@@ -13,6 +13,7 @@ class Post(db.conn.Model):
     
     
     def __init__(self, title, body, user_id, id=None):
+      
         super().__init__()
         self.id = id
         self.title = title

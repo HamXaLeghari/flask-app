@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Markdown Notes</title>
+    <title>My Blog</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='bulma.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='highlight.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
@@ -12,7 +12,7 @@
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="container">
         <div class="navbar-brand">
-          <a class="navbar-item" href="{{ url_for('userBp.index') }}">Notes</a>
+          <a class="navbar-item" href="{{ url_for('postBp.index') }}">Blog</a>
 
           <div class="navbar-burger" data-target="navMenu">
             <span></span>
@@ -23,10 +23,10 @@
         <div class="navbar-menu" id="navMenu">
           <div class="navbar-end">
             {% if g.user %}
-              <a class="navbar-item" href="{{  url_for('note_create') }}" aria-label="New Note">
+              <a class="navbar-item" href="{{  url_for('postBp.create') }}" aria-label="New Note">
                 <i class="far fa-plus-square"></i>
               </a>
-              <a class="navbar-item"  href="{{ url_for('log_out') }}">
+              <a class="navbar-item"  href="{{ url_for('userBp.logout') }}">
                 Log Out
               </a>
             {% else %}
