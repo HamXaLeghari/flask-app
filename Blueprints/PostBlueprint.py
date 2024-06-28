@@ -73,7 +73,7 @@ def update():
     
     postService.addOrUpdate(post=post)
     
-    flash(f'Post Updated successfully: {payload["title"]}')
+    flash(f'Post Updated successfully: {payload["title"]}','success')
     
     return redirect(url_for('postBp.index'))
 
