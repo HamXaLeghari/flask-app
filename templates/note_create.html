@@ -8,14 +8,14 @@
     <div class="field">
       <label class="label" for="title">Title</label>
       <div class="control">
-        <input name="title" value="{{ request.form['title'] }}" class="input"></input>
+        <input name="title" required value="{{ request.form['title'] }}" class="input"></input>
       </div>
     </div>
 
     <div class="field">
       <label class="label" for="body">Body</label>
       <div class="control">
-        <textarea name="body" class="textarea has-text-monospaced">{{ request.form['body'] }}</textarea>
+        <textarea name="body" required class="textarea has-text-monospaced">{{ request.form['body'] }}</textarea>
       </div>
     </div>
 
