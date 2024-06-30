@@ -1,7 +1,7 @@
 from flask import Flask, current_app as app, Blueprint, redirect, render_template, url_for, request, Response, session, flash, jsonify
 from werkzeug.security import  generate_password_hash, check_password_hash
-from ..Services.UserService import UserService
-from ..Models.User import User
+from Services.UserService import UserService
+from Models.User import User
 
     
 userBp = Blueprint('userBp',__name__,url_prefix='/user',template_folder='templates',static_folder='static')

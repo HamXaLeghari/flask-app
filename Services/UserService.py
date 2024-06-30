@@ -1,8 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import SQLAlchemyError
 from flask import current_app as app
-from ..Models.User import User
-from ..Models.Post import Post
+from Models.User import User
+from Models.Post import Post
 
 class UserService:
     

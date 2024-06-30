@@ -11,6 +11,7 @@ python-dotenv = "*"
 mysqlclient = "*"
 uwsgi = "*"
 class-utils = "*"
+gunicorn = "*"
 
 [dev-packages]
 

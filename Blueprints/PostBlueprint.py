@@ -1,7 +1,7 @@
 from flask import Flask, current_app as app, Blueprint, redirect, render_template, url_for, request, Response, session, flash, jsonify,g
 from werkzeug.security import  generate_password_hash, check_password_hash
-from ..Services.PostService import PostService
-from ..Models.Post import Post
+from Services.PostService import PostService
+from Models.Post import Post
 
    
 postBp = Blueprint('postBp',__name__,url_prefix='/post',template_folder='templates',static_folder='static')

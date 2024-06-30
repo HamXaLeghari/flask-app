@@ -1,4 +1,4 @@
-from ..Configurations.DatabaseConfig import DatabaseConfig as db
+from Configurations.DatabaseConfig import DatabaseConfig as db
 from .Post import Post
 
 

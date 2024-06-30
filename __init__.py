@@ -1,9 +1,9 @@
 import os
 from flask import Flask,render_template,redirect,url_for,current_app,session,g
 from flask_migrate import Migrate
-from .Configurations.DatabaseConfig import DatabaseConfig as dbConfig
+from Configurations.DatabaseConfig import DatabaseConfig as dbConfig
 from sqlalchemy.exc import SQLAlchemyError
-
+from werkzeug.exceptions import HTTPException
 
 def create_app(testConfig=None):
     
@@ -17,15 +17,15 @@ def create_app(testConfig=None):
     
     db = dbConfig.create_instance()
     
-    from .Models import Post,User    
+    from Models import Post,User    
         
     db.init_app(app)
     
     migrate = Migrate(app,db)
     
         
-    from .Services.UserService import UserService
-    from .Services.PostService import PostService
+    from Services.UserService import UserService
+    from Services.PostService import PostService
     
     app.UserService : UserService = UserService(db)
     app.PostService : PostService = PostService(db)
@@ -39,18 +39,20 @@ def create_app(testConfig=None):
         else:
             g.user = None
     
-    from .Blueprints.UserBlueprint import userBp
-    from .Blueprints.PostBlueprint import postBp
+    from Blueprints.UserBlueprint import userBp
+    from Blueprints.PostBlueprint import postBp
     
     
     app.register_blueprint(userBp)
     app.register_blueprint(postBp)
     
-    from .Exceptions.ExceptionHandler import ExceptionHandler
+    from Exceptions.ExceptionHandler import ExceptionHandler
     
     exceptionHandler = ExceptionHandler(app)
     app.register_error_handler(Exception, exceptionHandler.handleBaseExceptions)
     app.register_error_handler(SQLAlchemyError,  exceptionHandler.handleDatabaseExceptions)
+    app.register_error_handler(HTTPException,exceptionHandler.handleHttpExceptions)
+    
     
     @app.route('/',methods=['GET'])
     def index():
