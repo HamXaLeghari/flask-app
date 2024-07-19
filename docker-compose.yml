@@ -3,8 +3,6 @@ version: '3'
 services:
   flask: 
     container_name: 'flask-container'
-    depends_on:
-     - mariadb
     build:
       context: .
       dockerfile: ./Dockerfile
@@ -22,9 +20,10 @@ services:
 
 networks:
   flask-net:
-   internal: true
+   external: true
 
 volumes:
   flask_conf:
+   external: true
     
      
