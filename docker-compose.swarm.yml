@@ -2,22 +2,16 @@
 version: '3'
 services:
   flask: 
-    container_name: 'flask-container'
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    
+    image: flask_app-flask:latest
+    deploy:
+      replicas: 2
     env_file: ./.env
-    expose:
-      - 8000
     volumes:
       - flask_conf:/var/www/html/flask
     
     networks:
       - flask-net
       
-  
-
 networks:
   flask-net:
    external: true
@@ -25,5 +19,3 @@ networks:
 volumes:
   flask_conf:
    external: true
-    
-     
