@@ -12,6 +12,7 @@ spec:
   strategy:
     type: Recreate
   template:
+    metadata:
       labels:
        service: nginx
   spec:
@@ -45,4 +46,4 @@ spec:
             claimName: nginx-cache
         - name: flask-conf
           persistentVolumeClaim:
-            claim: flask-conf
+            claimName: flask-conf
