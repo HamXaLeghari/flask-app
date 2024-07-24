@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: nginx
+  name: nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      service: nginx
+  strategy:
+    type: Recreate
+  template:
+      labels:
+       service: nginx
+  spec:
+      containers:
+        - image: hamzaleghari/flask-nginx:latest
+          name: nginx
+          ports:
+            - containerPort: 80
+              protocol: TCP
+
+          volumeMounts:
+            - mountPath: /etc/nginx
+              name: nginx-conf
+
+            - mountPath: /var/cache/nginx
+              name: nginx-cache
+
+            - mountPath: /var/www/html/flask
+              name: flask-conf
+
+      restartPolicy: Always
+
+
+      volumes:
+        - name: nginx-conf
+          persistentVolumeClaim:
+            claimName: nginx-conf
+
+        - name: nginx-cache
+          persistentVolumeClaim:
+            claimName: nginx-cache
+        - name: flask-conf
+          persistentVolumeClaim:
+            claim: flask-conf

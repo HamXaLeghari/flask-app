@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    service: flask
+  name: flask
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: flask
+  template:
+    metadata:
+      labels:
+        service: flask
+    spec:
+      containers:
+        - name: flask
+          image: hamzaleghari/flask-app:latest
+          ports:
+            - containerPort: 8000
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: shared-env
+          volumeMounts:
+            - mountPath: /var/www/html/flask
+              name: flask-conf
+      volumes:
+        - name: flask-conf
+          persistentVolumeClaim:
+            claimName: flask-conf

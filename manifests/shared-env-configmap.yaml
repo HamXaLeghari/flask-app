@@ -1,0 +1,22 @@
+apiVersion: v1
+
+kind: ConfigMap
+
+metadata:
+  labels:
+    service: mariadb-shared-env
+  name: shared-env
+
+data:
+ # Database configuration
+ MARIADB_USER: admin
+ MARIADB_PASSWORD: abc123
+ MARIADB_HOST: mariadb
+ MARIADB_PORT: '3306'
+ MARIADB_DATABASE: blog
+ MARIADB_ROOT_PASSWORD: abc123!
+# Application configuration
+ FLASK_ENV: development
+ FLASK_APP: 'app:app'
+ SECRET_KEY: 'b_5#y2L"F4Q8z\n\xec]/'
+#export PYTHONPATH='.'
