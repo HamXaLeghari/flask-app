@@ -22,28 +22,17 @@ spec:
           ports:
             - containerPort: 80
               protocol: TCP
-
           volumeMounts:
-            - mountPath: /etc/nginx
-              name: nginx-conf
-
             - mountPath: /var/cache/nginx
               name: nginx-cache
-
-            - mountPath: /var/www/html/flask
-              name: flask-conf
+              mountPropagation: HostToContainer
 
       restartPolicy: Always
 
 
       volumes:
-        - name: nginx-conf
-          persistentVolumeClaim:
-            claimName: nginx-conf
-
         - name: nginx-cache
           persistentVolumeClaim:
             claimName: nginx-cache
-        - name: flask-conf
-          persistentVolumeClaim:
-            claimName: flask-conf
+       
+

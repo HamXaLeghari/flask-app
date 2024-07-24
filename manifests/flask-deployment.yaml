@@ -23,10 +23,3 @@ spec:
           envFrom:
             - configMapRef:
                 name: shared-env
-          volumeMounts:
-            - mountPath: /var/www/html/flask
-              name: flask-conf
-      volumes:
-        - name: flask-conf
-          persistentVolumeClaim:
-            claimName: flask-conf
